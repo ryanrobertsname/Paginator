@@ -44,13 +44,6 @@ class Paginator implements IteratorAggregate
     private $firstTitle = "First";
     private $lastTitle = "Last";
     
-
-    
-    public function __construct($pagePattern = "") 
-    {
-        $this->setUrl($this->getUri(), $pagePattern);
-    }
-    
     public function setUrl($url, $pagePattern = null) 
     {
         $this->url = $url;
@@ -77,19 +70,6 @@ class Paginator implements IteratorAggregate
         $this->navigationSize = $navigationSize;
         $this->totalPages = @ceil($this->totalItems/$this->itemsPerPage);
         return $this;
-    }
-    
-    /**
-     * Return the URI of the request
-     * 
-     * @return string
-     */
-    public function getUri()
-    {
-        $uri  = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') 
-                    || $_SERVER['SERVER_PORT'] == 443) ? "https" : "http";
-        $uri .= "://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
-        return $uri;
     }
     
     /**
